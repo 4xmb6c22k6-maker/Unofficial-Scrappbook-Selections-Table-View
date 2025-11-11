@@ -55,6 +55,7 @@ Damit können alle Bilder, Kommentare und Likes schnell verglichen, sortiert und
 
 4. Du kannst jetzt:
    - Kommentare und Namen kopieren
+   - Alle Bilder laden (Blauer Button)
    - Exportieren (CSV / Markdown / Text)
    - Bilder direkt herunterladen
    - Wieder zur Original-Ansicht wechseln
