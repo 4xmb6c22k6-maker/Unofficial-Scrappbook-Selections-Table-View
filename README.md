@@ -49,7 +49,7 @@ Damit können alle Bilder, Kommentare und Likes schnell verglichen, sortiert und
    [`https://builder.scrappbook.de/#/collection/`](https://builder.scrappbook.de/#/collection/)
 
 2. Warte, bis oben rechts in der Button-Leiste der neue Button  
-   **„Tabellenansicht“** erscheint.
+   **„Tabellenansicht“** erscheint. Evtl. muss die Seite neu geladen werden.
 
 3. Klicke ihn an, um zur Tabellenansicht zu wechseln.
 
