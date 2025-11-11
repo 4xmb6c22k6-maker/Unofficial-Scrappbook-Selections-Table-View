@@ -1,6 +1,6 @@
 # 🧩 Scrappbook Kommentar-Manager (Inoffiziell)
 
-Ein inoffizielles Browser-Add-on für [Scrappbook](https://builder.scrappbook.de), das Kommentare und Favoriten aus einer Auswahl in einer übersichtlichen Tabellenansicht darstellt.  
+Ein inoffizielles Browser-Add-on für [Scrappbook](https://scrappbook.de), das Kommentare und Favoriten aus einer Auswahl in einer übersichtlichen Tabellenansicht darstellt.  
 Damit können alle Bilder, Kommentare und Likes schnell verglichen, sortiert und exportiert werden (z. B. als CSV oder Markdown-Datei).
 
 > ⚠️ **Hinweis:** Dieses Projekt befindet sich noch in der Entwicklung. Da es außschließlich mit KI erstellt wurde können noch Fehler auftreten oder sich Funktionen unerwartet verhalten.
