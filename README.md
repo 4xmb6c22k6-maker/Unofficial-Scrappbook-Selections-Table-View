@@ -46,7 +46,7 @@ Damit können alle Bilder, Kommentare und Likes schnell verglichen, sortiert und
 ## 🧰 Verwendung
 
 1. Öffne eine Kollektion unter  
-   [`https://builder.scrappbook.de/#/collection/edit/...`](https://builder.scrappbook.de/#/collection/edit/...)
+   [`https://builder.scrappbook.de/#/collection/`](https://builder.scrappbook.de/#/collection/)
 
 2. Warte, bis oben rechts in der Button-Leiste der neue Button  
    **„Tabellenansicht“** erscheint.
