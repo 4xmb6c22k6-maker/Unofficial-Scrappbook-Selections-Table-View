@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Unofficial table view for Scrappbook gallery selections",
   "version": "2.0",
-  "description": "Unofficial add-on. Displays Scrappbook gallery selections in a table view. Work in progress. Not related to Scrappbook or PhotoStore24.",
+  "description": "Unofficial add-on. Displays Scrappbook selections in a table view. Work in progress. Not related to Scrappbook or PhotoStore24.",
   "permissions": [
     "clipboardWrite",
     "storage"
