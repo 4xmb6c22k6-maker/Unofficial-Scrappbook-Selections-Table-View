@@ -157,7 +157,20 @@ function detectScrappbookLanguage() {
     // Speichere im chrome.storage nur wenn sich etwas geändert hat
     if (currentLanguage !== language) {
       currentLanguage = language;
-      chrome.storage.local.set({ language: language });
+      
+      // Speichern mit Error Handling
+      try {
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+          chrome.storage.local.set({ language: language }, () => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              console.log('⚠️ Could not save language to storage:', chrome.runtime.lastError.message);
+            }
+          });
+        }
+      } catch (error) {
+        console.log('⚠️ Chrome storage not accessible:', error.message);
+        // Extension wurde neu geladen - kein Problem, Sprache ist trotzdem gesetzt
+      }
       
       // Reload Tabelle falls geöffnet
       if (isTableView) {
@@ -175,13 +188,26 @@ function detectScrappbookLanguage() {
 
 // Sprache laden beim Start - mit Retry-Logik
 function loadLanguage() {
-  // Lade gespeicherte Sprache aus chrome.storage
-  chrome.storage.local.get(['language'], (result) => {
-    if (result.language) {
-      currentLanguage = result.language;
-      console.log('🌍 Language loaded from storage:', currentLanguage);
+  // Lade gespeicherte Sprache aus chrome.storage mit Error Handling
+  try {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['language'], (result) => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          console.log('⚠️ Chrome storage error:', chrome.runtime.lastError.message);
+          return;
+        }
+        if (result.language) {
+          currentLanguage = result.language;
+          console.log('🌍 Language loaded from storage:', currentLanguage);
+        }
+      });
     }
-  });
+  } catch (error) {
+    console.log('⚠️ Could not access chrome.storage:', error.message);
+    // Extension wurde neu geladen - verwende Browser-Fallback
+    const browserLang = navigator.language.toLowerCase();
+    currentLanguage = browserLang.startsWith('de') ? 'de' : 'en';
+  }
   
   // Versuche Scrappbook-Sprache zu erkennen mit Retries
   let retries = 0;
@@ -214,18 +240,28 @@ function loadLanguage() {
   tryDetectLanguage();
 }
 
-// Lausche auf Sprachwechsel
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === 'language_changed') {
-    currentLanguage = message.language;
-    console.log('🌍 Language changed to:', currentLanguage);
-    
-    // Reload Tabelle falls geöffnet
-    if (isTableView) {
-      showTable(allData);
-    }
+// Lausche auf Sprachwechsel - mit Error Handling
+try {
+  if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onMessage) {
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      try {
+        if (message.type === 'language_changed') {
+          currentLanguage = message.language;
+          console.log('🌍 Language changed to:', currentLanguage);
+          
+          // Reload Tabelle falls geöffnet
+          if (isTableView) {
+            showTable(allData);
+          }
+        }
+      } catch (error) {
+        console.log('⚠️ Error in message listener:', error.message);
+      }
+    });
   }
-});
+} catch (error) {
+  console.log('⚠️ Could not add message listener:', error.message);
+}
 
 // Warte bis Seite geladen
 function init() {
@@ -1024,10 +1060,22 @@ function showTable(data) {
       // Lade Bild über Background Script (umgeht CORS!)
       const convertToBase64 = async () => {
         try {
+          // Checke ob chrome.runtime verfügbar ist
+          if (typeof chrome === 'undefined' || !chrome.runtime || !chrome.runtime.sendMessage) {
+            console.log('⚠️ Chrome runtime not available, skipping Base64 conversion');
+            item.thumbnailBase64 = null;
+            return;
+          }
+          
           // Sende Message an Background Script
           chrome.runtime.sendMessage(
             { type: 'fetch_image', url: item.thumbnail },
             (response) => {
+              if (chrome.runtime && chrome.runtime.lastError) {
+                console.error(`❌ Base64-Konvertierung fehlgeschlagen für ${item.imageName}:`, chrome.runtime.lastError.message);
+                item.thumbnailBase64 = null;
+                return;
+              }
               if (response && response.success) {
                 item.thumbnailBase64 = response.base64;
                 console.log(`✅ Base64 konvertiert für: ${item.imageName} (${response.base64.length} Zeichen)`);
