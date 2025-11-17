@@ -48,9 +48,6 @@ See the included `LICENSE.ExcelJS`, `LICENSE.jsPDF`, and `LICENSE.jsPDF-AutoTabl
 5. Click **Load unpacked**.  
 6. Select the extracted folder.
 
-## 📤 Installation (Chrome Web Store)
-If published, simply add it to Chrome from the Web Store.
-
 ## ⚠️ Disclaimer
 This extension may still contain bugs — it is a work in progress.  
 Use at your own risk.  
@@ -94,9 +91,6 @@ Siehe die Dateien `LICENSE.ExcelJS`, `LICENSE.jsPDF`, `LICENSE.jsPDF-AutoTable`.
 4. **Entwicklermodus** aktivieren (Schalter oben rechts)  
 5. Auf **Entpackte Erweiterung laden** klicken  
 6. Den entpackten Ordner auswählen
-
-## 📤 Installation (Chrome Web Store)
-Falls verfügbar, kann die Erweiterung direkt über den Web Store installiert werden.
 
 ## ⚠️ Hinweis
 Die Erweiterung befindet sich noch in Entwicklung – Fehler können auftreten.
