@@ -1,5 +1,7 @@
 # Unofficial Scrappbook Selections Table View Extension
 
+## The add-on is now also available for free in the [Chrome Web Store](https://chromewebstore.google.com/detail/apchdalahlhjncgejjhombkdebamnjdm?utm_source=item-share-cb).
+
 A Chrome extension that displays [Scrappbook](https://scrappbook.de) selections in a clean, sortable, exportable table view.  
 Includes fullscreen image viewing, multiple export formats, automatic language detection (DE/EN), and batch image loading.  
 This is an unofficial tool and not affiliated with [Scrappbook](https://scrappbook.de) or PhotoStore24.
